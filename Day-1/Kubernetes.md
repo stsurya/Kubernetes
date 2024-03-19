@@ -19,7 +19,7 @@ Docker's automation and orchestration capabilities aren't as robust as other con
 Docker Swarm doesn't have built-in self-healing capabilities like Kubernetes.
 Docker containers don't run at bare-metal speeds.
 
-Kubernetes has several advantages over Docker, including:
+### Kubernetes has several advantages over Docker, including:
 
 ### Scalability:
 
