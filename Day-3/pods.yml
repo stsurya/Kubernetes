@@ -1,10 +1,11 @@
+#To create a pod with name nginx
 apiVersion: v1
 kind: Pod
 metadata:
-  name: hello2
+  name: nginx
 spec:
   containers:
-  - name: somehitng
+  - name: nginx
     image: nginx:1.14.2
     ports:
     - containerPort: 80
