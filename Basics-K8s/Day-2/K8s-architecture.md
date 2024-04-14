@@ -20,7 +20,7 @@ a simple, distributed key value storage which is used to store kubernets cluster
 
 ### kube-controller-manager:
 
-It runs a no: distinct controller processes in the background(replication controller controls the number of replicas in a pod, enpoint controller and others) to regualte the shared state of cluster and to perform routine tasks.
+It runs a no: distinct controller processes in the background(replication controller controls the number of replicas in a pod, endpoint controller and others) to regualte the shared state of cluster and to perform routine tasks.
 
 When a change in service configuration occurs(for example, replacing the image from which pods are running or changing the configuratoin yaml file), the controller spots the change and starts working on the desired state.
 
