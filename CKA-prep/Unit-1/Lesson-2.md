@@ -17,4 +17,10 @@ This is the primary management component in Kubernetes.
 - Then kube-api server will update those details from kube-scheduler and stores them ETCD server.
 - Kube-api server also communicates with the kubelet on the resective node. Then the kubelet will create a pod and deploy the image and update back to the kube-api server.
 
-Similar patter is followed whenever a change request comes in.
+Similar pattern is followed whenever a change request comes in.
+
+# Kube Controller Manager:
+
+- Simply, Kube Controller Manager means it'll continuosly monitor the various componets in the system and work towards bringing the whole system to the desired state.
+- In the background it'll run various other controllers such as replica controller, node controller.
+- For eg: Node Controller will always monitor all the nodes, Node Controller will check the health of nodes every 5seconds through kube-api server. When ever it doesn't receive any update from nodes it'll wait for 40sec and then it will mark node as un-reachable. Node-controller will give 5min to the node to comeback if it doesn't comeback then node-controller will create a new node.
