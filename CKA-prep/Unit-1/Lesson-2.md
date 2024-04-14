@@ -24,3 +24,17 @@ Similar pattern is followed whenever a change request comes in.
 - Simply, Kube Controller Manager means it'll continuosly monitor the various componets in the system and work towards bringing the whole system to the desired state.
 - In the background it'll run various other controllers such as replica controller, node controller.
 - For eg: Node Controller will always monitor all the nodes, Node Controller will check the health of nodes every 5seconds through kube-api server. When ever it doesn't receive any update from nodes it'll wait for 40sec and then it will mark node as un-reachable. Node-controller will give 5min to the node to comeback if it doesn't comeback then node-controller will create a new node.
+
+# Kube Scheduler:
+
+- The scheduler is responsible for deciding which pod goes on which node. It doesn't actually place the pod on the node, It's the job of kubelet.
+- kubelet actually creates the pod on the node.
+- We can customize the Kube-scheduler as well.
+
+# Kubelet:
+
+The main service on a node, regularly taking in new or modified pod specifications(primarly from the kube-apiserver) and ensuring that their pods and containers are running in the desired state.This component also reports to the master on the health of the host where it is running.
+
+# Kube Proxy:
+
+Its main function is to ensure smooth communication between services and pods within the cluster.
