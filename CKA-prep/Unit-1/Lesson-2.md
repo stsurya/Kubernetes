@@ -42,32 +42,3 @@ Its main function is to ensure smooth communication between services and pods wi
 # Pod
 
 A Pod is the smallest unit of kubernetes. A pod can encapsulates one or more containers.Pods are ephemeral by nature, if one pod goes down, if a pod goes down(or fails on the node) kubernetes can automatically create a replica of pod to continue the operations smoothly.
-
-## YAML(Pods with YAML) in kubernetes
-
-For every YAML file in kubernetes there are four root level properties they're apiVersion, Kind, metadata, spec
-
-- **apiVersion:** This is the version of k8s API to create the object. Depending on what you create you can pick your version.
-- **kind:** It refers to the type of object that we create.
-- **metadata:** This is the data about object. Eg: Names and labels they're like siblings indentation is important here.
-- **spec:** This is where we provide additional information depending on what object we're going to create.
-
-```
-apiVersion: v1
-kind: Pod
-metadata:
-    name: nginx
-    labels:
-        app: nginx
-        tier: frontend
-spec:
-    containers:
-    - name: nginx
-      image: nginx
-    - name: busybox
-      image: busybox
-```
-
-```
-kubectl apply -f pod.yml
-```
