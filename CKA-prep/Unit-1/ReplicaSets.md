@@ -27,4 +27,4 @@ spec:
 ### You can scale replica sets using below commands
 
 **kubectl replace -f replicasets.yml**
-**kubectl sclae reploicas=6 -f replicasets.yml**
+**kubectl scale replicas=6 -f replicasets.yml**
