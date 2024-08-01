@@ -3,12 +3,13 @@ kind: Deployment
 metadata:
   name: nginx-deployment
   labels:
-    app: nginx
+    tier: sonar
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: nginx  
+      app: nginx
+      tier: sonar
   template:
     metadata:
       labels:
