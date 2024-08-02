@@ -33,6 +33,8 @@ kubectl get pods --> Gives details of pods
 kubectl get pods -o wide --> Gives bit more detailed information.
 kubectl describe pod <podname> --> Detailed descritpion of a pod
 kubectl delete pod <podname> --> will delete the pod
+kubectl run <pod-name> --image=<image-name>
+kubectl get pods --field-selector=status.phase=Pending
 ```
 
 ## Best pracitce to have only one container in one pod

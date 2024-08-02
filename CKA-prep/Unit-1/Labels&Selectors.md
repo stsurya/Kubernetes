@@ -38,3 +38,5 @@ spec:
 In the above yaml file, we can see labels are defined at two palces. The labels on the Replicaset will be used if we configure some other objects to discover the ReplicaSet.
 
 In order to Connect ReplicaSet to Pods, we used selector field under the ReplicaSet specification to match the label define on the Pods.
+
+`kubectl get pods --selector app=App1`
