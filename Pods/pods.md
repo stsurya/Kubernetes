@@ -16,3 +16,28 @@ To create a pod
 ```
 kubectl run <pod-name> --image=<image-name>
 ```
+
+## What is the difference between pods and containers ?
+
+Scope: A container is focused on a single application or service, while a Pod is a higher-level abstraction that can include multiple containers, allowing them to share resources and run together.
+Lifecycle: Containers can run independently in any environment with a container runtime, whereas Pods are specifically managed by Kubernetes.
+Networking: Containers within the same Pod share the same network namespace, IP address, and ports, making communication between them more efficient. Containers in different Pods have separate IP addresses.
+
+## Errors while creating pods
+
+- "CrashLoopBackOff"
+- "ImagePullBackOff"
+
+## Can you explain the concept of Pod lifecycle? What are the different phases?
+
+The Pod lifecycle refers to the various stages a Pod goes through from creation to deletion in a Kubernetes cluster.
+
+**1. Pending:** The Pod is created and accepted by the Kubernetes cluster, but not yet running. This is the initial state.
+
+**2. Running:** The Pod is running and at least one container is in the running state.
+
+**3. Succeeded:** All containers in the Pod have successfully completed their execution and exited.
+
+**4. Failed:** One or more containers in the Pod have failed, and the Pod is no longer running.
+
+**5. Unknown:** The Pod's state cannot be determined, often due to a network issue or node failure.
