@@ -41,3 +41,10 @@ The Pod lifecycle refers to the various stages a Pod goes through from creation 
 **4. Failed:** One or more containers in the Pod have failed, and the Pod is no longer running.
 
 **5. Unknown:** The Pod's state cannot be determined, often due to a network issue or node failure.
+
+## Deploying pods on control plane nodes is not recommended for several reasons:
+
+1. Resource contention: Control plane nodes are responsible for managing the cluster, and running pods on them can consume resources (CPU, memory, etc.) that are critical for cluster management.
+2. Security: Control plane nodes have elevated privileges, and running pods on them can increase the attack surface. If a pod is compromised, it could potentially gain access to sensitive cluster resources.
+3. Stability: Control plane nodes are critical for cluster stability. If a pod running on a control plane node causes issues, it can impact the entire cluster.
+4. Scalability: Control plane nodes are typically not designed for running large workloads. Deploying pods on them can limit the scalability
