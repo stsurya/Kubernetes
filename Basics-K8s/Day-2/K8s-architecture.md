@@ -18,6 +18,8 @@ This is the central management entity that receives all the REST requests for mo
 
 a simple, distributed key value storage which is used to store kubernets cluster data (such as number of pods, their state, their namespace) API's and service discovery details.
 
+- By default, etcd runs on 2379.
+
 ### kube-controller-manager:
 
 It runs a no: distinct controller processes in the background(replication controller controls the number of replicas in a pod, endpoint controller and others) to regualte the shared state of cluster and to perform routine tasks.
