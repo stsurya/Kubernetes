@@ -1,6 +1,6 @@
-# Replica Sets
+## What is Replica Set ?
 
-A Replica set's purpose is to maintain a stable set of replica pods running at any given time. As such, it is often used to guarantee the availability of a specified number of identical Pods
+Replica set is a kubernetes resource which is reponsible for maintaing a specified number of identical pods all the time. ReplicaSet automatically detect and recover from pods failures by creating new replicas to replace the failed ones, ensuring that the desired state of the application is maintained. This is called self-healing or auto-healing.
 
 ```
 apiVersion: apps/v1
