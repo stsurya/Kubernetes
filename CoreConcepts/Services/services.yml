@@ -11,5 +11,3 @@ spec:
   - targetport: 80
     port: 80
     NodePort: 30008
-
-
