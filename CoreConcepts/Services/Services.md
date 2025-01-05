@@ -39,3 +39,13 @@ spec:
 - **NodePort:** The port that is exposed on the Node.
 - **TargetPort:** The port on the Pod where the application is running.
 - **Port:** The port of the ClusterIP service.
+
+- By default, Kubernetes reserves a port range 30000–32767 for NodePort services. If you don’t specify this port, it will pick a random port. Most of the time you should let Kubernetes choose the port; there are many caveats to what ports are available for you to use.<br>
+
+There are many downsides to this method:<br>
+
+- You can only have one service per port.<br>
+- You can only use ports 30000–32767.<br>
+- If your Node/VM IP address change, you need to deal with that.<br>
+
+- If pods are running on multiple nodes, a single service can still route traffic to all the pods because it selects them based on matching labels.<br>
