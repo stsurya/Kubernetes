@@ -37,4 +37,4 @@ spec:
 - Kubernetes will not use the scheduler to place this pod; it will directly assign it to the specified node.
 - The above yaml will only work while creation of pod.
 - If incase there is a pod which is already up and running and if you want to pace it on particualr node. k8s won't allow you to modify the `nodeName` property of a pod.
-- You can do that via binding.
+- Easiest way is to delete pods and re-create or else You can do that via binding and followd by post request.
