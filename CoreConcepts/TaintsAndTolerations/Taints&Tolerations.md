@@ -7,4 +7,4 @@ Three effect:
 **PreferNoSchedule:** This discourages scheduling new pods, but allows if it is necessary.<br>
 **NoExecute:** removes existing pods without a toleration and prevents new ones from being scheduled.<br>
 
-`kubectl taints nodes node01 spray=mortein:NoSchedule`
+`kubectl taint nodes node01 spray=mortein:NoSchedule`
