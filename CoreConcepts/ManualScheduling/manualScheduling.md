@@ -33,5 +33,5 @@ spec:
   nodeName: <node-name>  # Replace <node-name> with the name of the target node
 ```
 
-- Replace <node-name> with the name of the desired node.
+- Replace `node-name` with the name of the desired node.
 - Kubernetes will not use the scheduler to place this pod; it will directly assign it to the specified node.
