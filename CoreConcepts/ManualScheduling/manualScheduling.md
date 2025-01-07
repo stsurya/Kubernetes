@@ -18,3 +18,20 @@
 - Once the scheduler selects a node, it binds the pod to the node by updating the pod's status in the API server.
 
 ## ManualScheduling
+
+- You can assign a specific node for your pod using the nodeName field in the pod's manifest.<br>
+
+```
+apiVersion: v1
+kind: Pod
+metadata:
+  name: manual-schedule-pod
+spec:
+  containers:
+  - name: nginx
+    image: nginx
+  nodeName: <node-name>  # Replace <node-name> with the name of the target node
+```
+
+- Replace <node-name> with the name of the desired node.
+- Kubernetes will not use the scheduler to place this pod; it will directly assign it to the specified node.
