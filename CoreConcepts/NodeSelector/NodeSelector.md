@@ -27,7 +27,9 @@ For example:<br>
 
 - The nodeSelector section in the PodSpec defines the key-value pairs to match.<br>
 - In this example, the pod will only schedule on nodes labeled with disktype=ssd and environment=production.<br>
-  **Key Points:**<br>
+
+**Key Points:**<br>
+
 - NodeSelector is strict: If no nodes match the NodeSelector criteria, the pod will remain unscheduled.<br>
 - Simple match: NodeSelector supports only exact matches (key=value). For advanced scheduling, you would use node affinity.<br>
 
