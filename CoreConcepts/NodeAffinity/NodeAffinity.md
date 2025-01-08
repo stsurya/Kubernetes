@@ -48,11 +48,13 @@ spec:
 
 - **requiredDuringSchedulingIgnoredDuringExecution:** The pod must be scheduled on nodes that match the rules.<br>
   In the example above:<br>
-- The node must have the label disktype=ssd.<br>
-- The node must have the label environment=production.<br>
-  **preferredDuringSchedulingIgnoredDuringExecution:** Kubernetes prefers nodes that match the rules but does not enforce them.<br>
+
+  - The node must have the label disktype=ssd.<br>
+  - The node must have the label environment=production.<br>
+
+- **preferredDuringSchedulingIgnoredDuringExecution:** Kubernetes prefers nodes that match the rules but does not enforce them.<br>
   In the example above:<br>
-- The scheduler tries to place the pod on a node with the label zone=us-east-1a.<br>
+  - The scheduler tries to place the pod on a node with the label zone=us-east-1a.<br>
 
 ### Operators in Node Affinity
 
