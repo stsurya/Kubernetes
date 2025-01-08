@@ -22,7 +22,9 @@ spec:
 
 Labels on Nodes: Nodes need to have the labels specified in the NodeSelector.<br>
 For example:<br>
+
 `kubectl label node <node-name> disktype=ssd environment=production`<br>
+
 **Pod Spec:**<br>
 
 - The nodeSelector section in the PodSpec defines the key-value pairs to match.<br>
