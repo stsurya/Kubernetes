@@ -12,6 +12,10 @@ Node Affinity in Kubernetes is an advanced feature used to control the schedulin
 
 **Example:**
 
+Applying labels on node.<br>
+
+`kubectl label node <node-name> disktype=ssd environment=production`
+
 ```
 apiVersion: v1
 kind: Pod
