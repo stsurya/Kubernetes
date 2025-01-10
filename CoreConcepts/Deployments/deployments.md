@@ -6,19 +6,14 @@ You describe a desired state in a Deployment, and the Deployment Controller chan
 
 - In Kubernetes a deployment is a method of launching a pod with containerized applications and ensuring that the necessary number of replicas is always running on the cluster.
 
-## How Deployments Handle ReplicaSets
+## How Deployment works ?
 
-**New ReplicaSet Creation:**
+**Declarative Updates:** You specify the desired state of your application in a Deployment YAML manifest, including the number of replicas, container images, and labels. Kubernetes ensures the actual state matches this desired state.
 
-When you update a Deployment (e.g., updating the container image or other spec fields), Kubernetes creates a new ReplicaSet for the updated Deployment.
+**ReplicaSet Management:** A Deployment creates and manages ReplicaSets, which in turn manage the Pods. It ensures the correct number of Pods are running at any time.
 
-**Old ReplicaSet Scaling:**
+**Rolling Updates:** Deployments support rolling updates, allowing you to update applications with zero downtime by incrementally replacing old Pods with new ones.
 
-During the rollout, Kubernetes gradually reduces the number of replicas in the old ReplicaSet and increases the replicas in the new ReplicaSet based on the Deployment's strategy (e.g., rolling update).
+**Rollback:** If a Deployment update fails, you can easily roll back to a previous version using kubectl rollout undo.
 
-**Old ReplicaSet Retention:**
-After the rollout is complete, the old ReplicaSet is retained, but it is typically scaled down to 0 replicas.
-Kubernetes retains these old ReplicaSets as part of its Deployment's revision history, allowing you to roll back to a previous version if needed.
-
-**Cleanup of Old ReplicaSets:**
-Old ReplicaSets are only deleted if you explicitly clean up the Deployment's revision history or the number of retained revisions exceeds the configured limit.
+- When a deployment is happening a new replica set will be created and pods are created in new replic set and old replica set will be retained to rollback.
