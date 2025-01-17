@@ -6,19 +6,21 @@ Key Components of kubernetes cluster:<br>
 
 ### 1. Clusters:
 
-- Defines the Kubernetes API server addresses (URLs) and connection settings.
-- Includes the server field, which points to the cluster's API server endpoint.
-- May include additional settings like certificate-authority for validating server certificates.
+- The clusters section lists all clusters that you already connected.<br>
+  Inside the cluster are two keys: <br>
+  - **certificate-authority** contains a certificate for the certificate authority (CA) that signed all internal Kubernetes certificates. This can be a file path or a Base64 string of the certificate's Privacy Enhanced Mail (PEM) format.
+  - **server** is the address of the server.
 
 ### 2. Users:
 
-- Specifies the authentication methods for accessing the clsuters.
-- Authentication includes certifications, tokens and other mechanisms.
+- The users section lists all users already used to connect to a cluster.
+- **client-certificate** contains a certificate for the user signed by the Kubernetes CA. This can be a file path or a Base64 string in the certificate PEM format.
+- **client-key** contains the key that signed the client certificate.
+- **token** contains a token for this user when there is no certificate.
 
 ### 3. Contexts:
 
-- Represents a combination of a cluster, a user, and a namespace.
-- A context specifies the cluster to interact with, the user credentials to use, and the namespace for commands.
+The contexts section specifies a combination of a user and a cluster. It also defines a default namespace for this pair. The context name is arbitrary, but the user and cluster should be predefined inside the kubeconfig file. If the namespace does not exist inside Kubernetes, the commands will fail and display the default Kubernetes message for a nonexistent namespace.
 
 ### 4. Current Context:
 
