@@ -9,4 +9,4 @@ Helm is a package manager for kubernetes and Helm Charts are its packages. They 
 **Install the Chart:** Use `helm install <release-name> <chart-name>` to deploy the application to a Kubernetes cluster.<br>
 **Upgrade/Rollback:** Easily upgrade or roll back your deployments using `helm upgrade` or `helm rollback`.<br>
 **Uninstall:** Remove a release using `helm uninstall <release-name>`.<br>
-**List:** `helm list -a`
+**List:** `helm list -a`.
