@@ -16,3 +16,5 @@ Helm is a package manager for kubernetes and Helm Charts are its packages. They 
 - `helm install <release-name> --debug --dry-run <chart-name>` : The helm install command with --debug and --dry-run options simulates an installation process by rendering the templates and printing the output, but it also attempts to validate the generated manifests against the cluster's state. However, no resources are actually created or modified.
 
 - `helm template <chart-name>`: The helm template command renders a Helm chart to its Kubernetes manifests without interacting with the Kubernetes API. It simply generates the manifests and outputs them to the terminal or a file.
+
+- The `helm lint <chart-name>` command is a utility provided by Helm to validate and analyze a Helm chart for syntax and best practices issues. It runs a series of checks on the chart's structure and templates to ensure they adhere to Helm standards and avoid common mistakes.
