@@ -4,12 +4,11 @@ Helm is a package manager for kubernetes and Helm Charts are its packages. They 
 
 ## Helm Workflow
 
-**Create a Chart:** Use `helm create <chart-name>` to scaffold a new chart.<br>
-**Customize Values:** Modify `values.yaml` to include your application's configuration.<br>
-**Install the Chart:** Use `helm install <release-name> <chart-name>` to deploy the application to a Kubernetes cluster.<br>
-**Upgrade/Rollback:** Easily upgrade or roll back your deployments using `helm upgrade <release-name> <chart-name>` or `helm rollback <release-name> <revision number> `.<br>
-
+- **Create a Chart:** Use `helm create <chart-name>` to scaffold a new chart.<br>
+- **Customize Values:** Modify `values.yaml` to include your application's configuration.<br>
+- **Install the Chart:** Use `helm install <release-name> <chart-name>` to deploy the application to a Kubernetes cluster.<br>
+- **Upgrade/Rollback:** Easily upgrade or roll back your deployments using `helm upgrade <release-name> <chart-name>` or `helm rollback <release-name> <revision number> `.<br>
 - Whenever you perform the upgrade or rollback the revision count will keep on increasing.<br>
 
-**Uninstall:** Remove a release using `helm uninstall <release-name>`.<br>
-**List:** `helm list -a`.
+- **Uninstall:** Remove a release using `helm uninstall <release-name>`.<br>
+- **List:** `helm list -a`.
