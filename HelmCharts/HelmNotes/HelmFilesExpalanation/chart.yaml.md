@@ -21,3 +21,7 @@ library: Used for reusable charts (e.g., for shared templates).<br>
 **5. version:** The version of the Helm chart itself.<br>
 
 **6. appVersion:** The version of the application that this chart deploys. This is for informational purposes and does not affect the chart's functionality.
+
+## What does charts/ folder do in helm ?
+
+The `charts/` folder in a Helm chart is used to manage dependencies for your Helm chart. It contains other Helm charts that your chart depends on, essentially functioning as a place to include child charts in a parent chart.
