@@ -1,0 +1,28 @@
+{{- range .Values.deployments }}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .name }}-dep
+  labels:
+    app: {{ .name }}
+spec:
+  replicas: {{ .replicas }}
+  selector:
+    matchLabels:
+      app: {{ .name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .name }}
+    spec:
+      containers:
+        - name: {{ .container.name }}
+          image: {{ .container.image }}
+          ports:
+            - containerPort: {{ .container.port }}
+          env:
+            {{- with .container.env }}
+            {{- toYaml . | nindent 12 }}
+            {{- end }}
+{{- end }}

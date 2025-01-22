@@ -1,0 +1,30 @@
+deployments:
+  - name: app-one
+    replicas: 2
+    container:
+      name: app-one-container
+      image: nginx:1.23
+      port: 80
+      env:
+        - name: ENV_VAR_1
+          value: "value1"
+
+  - name: app-two
+    replicas: 3
+    container:
+      name: app-two-container
+      image: redis:6.0
+      port: 6379
+      env:
+        - name: ENV_VAR_2
+          value: "value2"
+
+  - name: app-three
+    replicas: 1
+    container:
+      name: app-three-container
+      image: busybox
+      port: 8080
+      env:
+        - name: ENV_VAR_3
+          value: "value3"

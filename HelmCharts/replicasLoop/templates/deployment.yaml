@@ -1,0 +1,21 @@
+{{- $replicas := 3 }}
+{{- range $i, $replica := until $replicas }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-deployment-{{ $i }}
+spec:
+  replicas: {{ $replica }}
+  selector:
+    matchLabels:
+      app: my-app
+  template:
+    metadata:
+      labels:
+        app: my-app
+    spec:
+      containers:
+      - name: my-app
+        image: redis:6.0
+        port: 6379
+{{- end }}
