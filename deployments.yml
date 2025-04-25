@@ -1,19 +1,17 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx-deployment
-  labels:
-    tier: sonar
+  name: myapp
+  namespace: development
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: nginx
-      tier: sonar
+      app: myapp
   template:
     metadata:
       labels:
-        app: nginx
+        app: myapp
     spec:
       containers:
       - name: nginx
