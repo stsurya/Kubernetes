@@ -22,3 +22,55 @@ In kubernetes stateful set is a workload API object used to manage the stateful 
 - Applications where each instance maintains its own state/data
 
 🎯 Every time you use a StatefulSet, you should create a Headless Service (clusterIP: None) for it to function correctly — especially for stateful, peer-based systems.
+
+```
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx
+spec:
+  clusterIP: None  # Makes it a headless service
+  selector:
+    app: nginx
+  ports:
+  - name: web
+    port: 80
+    targetPort: 80
+```
+
+```
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: nginx
+spec:
+  serviceName: "nginx" # Must match the headless service
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      terminationGracePeriodSeconds: 10
+      containers:
+      - name: nginx
+        image: nginx
+        ports:
+        - containerPort: 80
+          name: web
+        volumeMounts:
+        - name: www
+          mountPath: /usr/share/nginx/html
+  volumeClaimTemplates:
+  - metadata:
+      name: www
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      resources:
+        requests:
+          storage: 1Gi
+      storageClassName: default  # Replace with your storage class if needed
+```
