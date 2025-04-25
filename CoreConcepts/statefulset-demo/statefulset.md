@@ -20,3 +20,5 @@ In kubernetes stateful set is a workload API object used to manage the stateful 
 - **Distributed systems:** Kafka, Zookeeper, Elasticsearch.
 
 - Applications where each instance maintains its own state/data
+
+🎯 Every time you use a StatefulSet, you should create a Headless Service (clusterIP: None) for it to function correctly — especially for stateful, peer-based systems.
