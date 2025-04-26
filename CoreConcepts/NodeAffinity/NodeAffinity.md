@@ -183,3 +183,87 @@ kubectl label nodes <node-name> disktype=ssd storage=hdd
 👉 Use `kubectl get nodes --show-labels` to verify node labels.  
 👉 Remember: `requiredDuringSchedulingIgnoredDuringExecution` = **mandatory**,  
 `preferredDuringSchedulingIgnoredDuringExecution` = **best effort**.
+
+Awesome question again! 🔥 Let’s break **weight** down very **easily**:
+
+---
+
+# 🎯 What is `weight` in Affinity?
+
+✅ `weight` is **used only with** `preferredDuringSchedulingIgnoredDuringExecution` (not with required).  
+✅ It tells Kubernetes:  
+**"How important is this preference for me?"**
+
+👉 The **higher** the weight (closer to 100), the **more Kubernetes tries** to satisfy it.
+
+---
+
+# 🎯 How does it work?
+
+When Kubernetes has to choose between multiple nodes:
+
+- It **scores** each node based on matching your preferred rules.
+- Nodes matching **higher-weight** preferences get **higher scores**.
+- The node with the **best score wins** and pod is scheduled there!
+
+---
+
+# ✍️ Simple example:
+
+```
+affinity:
+  podAffinity:
+    preferredDuringSchedulingIgnoredDuringExecution:
+      - weight: 100
+        podAffinityTerm:
+          labelSelector:
+            matchExpressions:
+              - key: app
+                operator: In
+                values:
+                  - frontend
+          topologyKey: kubernetes.io/hostname
+```
+
+**Meaning:**  
+➔ "Try to schedule this pod close to `frontend` pods with very high preference (weight=100)."
+
+But if not possible, **it’s okay**, just best-effort.
+
+---
+
+# 📈 How is the score calculated?
+
+- Each preferred rule you define contributes to the **total score**.
+- Weight decides **how much contribution** each rule makes.
+- **Final scheduling** is based on total weighted score!
+
+👉 **Higher weight = stronger pull** to satisfy that preference.
+
+---
+
+# 📦 Important:
+
+- `weight` can be **1 to 100** (nothing beyond 100).
+- If you have **multiple preferred rules**, each rule’s weight matters.
+- Kubernetes **adds up** all weighted scores when choosing a node.
+
+---
+
+# 🧹 Very simple way to remember:
+
+| Weight | Meaning                               |
+| :----- | :------------------------------------ |
+| 100    | Try **very hard** to follow this rule |
+| 50     | Try **medium effort**                 |
+| 10     | Just a **small preference**           |
+| 1      | Very **low importance**               |
+
+---
+
+# 🚀 Conclusion:
+
+| Term                                              | Meaning                             |
+| :------------------------------------------------ | :---------------------------------- |
+| `requiredDuringSchedulingIgnoredDuringExecution`  | Strict rule (no weight needed)      |
+| `preferredDuringSchedulingIgnoredDuringExecution` | Soft rule (weight shows importance) |
