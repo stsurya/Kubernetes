@@ -46,3 +46,21 @@ When you need to:<br>
 **Limitations:**
 
 - No complex matching: For more expressive constraints (e.g., "one of these values" or "not this value"), use Node Affinity.<br>
+
+### Differene between nodeSelector and nodeAffinity
+
+| Feature             | `nodeSelector`                                                                                   | `nodeAffinity`                                                                                                                                                                                                              |
+| :------------------ | :----------------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Definition**      | Basic way to tell Kubernetes _"run this pod on a node with this label."_                         | Advanced, flexible way to tell Kubernetes _"prefer" or _"require"\* pods to run on nodes based on rules.                                                                                                                    |
+| **Syntax**          | Very simple. Just one key-value pair.                                                            | More powerful. Can specify multiple conditions, operators like `In`, `NotIn`, `Exists`, etc.                                                                                                                                |
+| **Type of Binding** | Hard rule. Pod **must** be scheduled to a node matching the label.                               | Can have **required rules** (must match) or **preferred rules** (better if matches, but can still run elsewhere).                                                                                                           |
+| **Use Cases**       | When you know exactly which nodes should run a pod (example: all GPU nodes labeled `gpu: true`). | When you want more flexibility, like: "Prefer nodes with SSDs, but if not available, still schedule elsewhere."                                                                                                             |
+| **Example**         | `yaml nodeSelector:   disktype: ssd `                                                            | `yaml affinity:   nodeAffinity:     requiredDuringSchedulingIgnoredDuringExecution:       nodeSelectorTerms:       - matchExpressions:         - key: disktype           operator: In           values:             - ssd ` |
+| **Complexity**      | Very simple.                                                                                     | Slightly complex but **very powerful**.                                                                                                                                                                                     |
+
+---
+
+**Summary:**
+
+- 👉 `nodeSelector` = simple matching (`key: value`)
+- 👉 `nodeAffinity` = smarter matching (multiple keys, rules, preferred/required conditions)
