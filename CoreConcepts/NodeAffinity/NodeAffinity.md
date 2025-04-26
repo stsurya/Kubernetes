@@ -69,3 +69,117 @@ Exists = Matches if the label key exists on the node.<br>
 DoesNotExist = Matches if the label key does not exist on the node.<br>
 Gt = Matches if the label's value is greater than the specified value.<br>
 Lt = Matches if the label's value is less than the specified value.<br>
+
+---
+
+# 🧠 Kubernetes Pod Scheduling - Quick Summary
+
+---
+
+## 1️⃣ Node Selector (Simple Scheduling)
+
+- Direct way to schedule a Pod on nodes with specific labels.
+- Example:
+
+```
+nodeSelector:
+  disktype: ssd
+```
+
+✅ Pod will schedule only on nodes with `disktype=ssd`.
+
+---
+
+## 2️⃣ Node Affinity (Advanced Scheduling)
+
+- **More powerful and flexible** than `nodeSelector`.
+- Two main types:
+
+| Type                                              | Meaning                                                     |
+| :------------------------------------------------ | :---------------------------------------------------------- |
+| `requiredDuringSchedulingIgnoredDuringExecution`  | **Hard rule** - Pod must meet these conditions to schedule. |
+| `preferredDuringSchedulingIgnoredDuringExecution` | **Soft rule** - Pod tries to meet, but not mandatory.       |
+
+---
+
+## 3️⃣ `matchExpressions`
+
+- More complex matching.
+- Format:
+  - `key`: label key
+  - `operator`: In, NotIn, Exists, DoesNotExist
+  - `values`: possible label values
+
+---
+
+## 4️⃣ **AND** and **OR** in Affinity
+
+| Condition                                  | Behavior                                       |
+| :----------------------------------------- | :--------------------------------------------- |
+| Multiple `matchExpressions`                | **AND** between them — all must match          |
+| Multiple `values` inside `matchExpression` | **OR** between them — any one value must match |
+
+✅ Example (AND):
+
+```
+matchExpressions:
+  - key: disktype
+    operator: In
+    values: [ssd]
+  - key: storage
+    operator: In
+    values: [hdd]
+```
+
+✅ Example (OR):
+
+```
+matchExpressions:
+  - key: disktype
+    operator: In
+    values: [ssd, nvme]
+```
+
+---
+
+## 5️⃣ PodAffinity / PodAntiAffinity (Pod-to-Pod Scheduling)
+
+- **PodAffinity**: Schedule close to other pods (example: apps that talk to each other).
+- **PodAntiAffinity**: Spread pods across nodes (example: replicas on different nodes).
+
+✅ Example for PodAntiAffinity (preferred):
+
+```
+affinity:
+  podAntiAffinity:
+    preferredDuringSchedulingIgnoredDuringExecution:
+      - weight: 100
+        podAffinityTerm:
+          labelSelector:
+            matchExpressions:
+              - key: replicaset
+                operator: In
+                values:
+                  - rs0.main
+          topologyKey: kubernetes.io/hostname
+```
+
+---
+
+## 6️⃣ Bonus - Labeling nodes with multiple labels
+
+- Example:
+
+```
+kubectl label nodes <node-name> disktype=ssd storage=hdd
+```
+
+✅ You can add multiple labels at once.
+
+---
+
+# ✨ Final Pro Tip
+
+👉 Use `kubectl get nodes --show-labels` to verify node labels.  
+👉 Remember: `requiredDuringSchedulingIgnoredDuringExecution` = **mandatory**,  
+`preferredDuringSchedulingIgnoredDuringExecution` = **best effort**.
