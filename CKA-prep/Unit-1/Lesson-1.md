@@ -14,3 +14,6 @@ what happens when you run the docker run command:
 - Next, containerd will set up the container environment. This process includes tasks such as setting up the container file system, networking interfaces, and other isolation features.
 - containerd will then delegate running the container to runc using a shim process. This will create and start the container.
 - Finally, once the container is running, containerd will monitor the container status and manage the lifecycle accordingly.
+
+To set the namepsace, so that we no need to use -n everytime
+`kubectl config set-context --current --namespace votingapp`
