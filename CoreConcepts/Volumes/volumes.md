@@ -43,6 +43,17 @@ And that's what a **PVC** is:
 
 📢 **PVC asks**, PV **gives**.
 
+The access modes are:<br>
+
+**ReadWriteOnce**<br>
+the volume can be mounted as read-write by a single node. **ReadWriteOnce** access mode still can allow multiple pods to access (read from or write to) that volume when the pods are running on the same node. For single pod access, please see **ReadWriteOncePod**.<br>
+**ReadOnlyMany**<br>
+the volume can be mounted as read-only by many nodes.<br>
+**ReadWriteMany**<br>
+the volume can be mounted as read-write by many nodes.<br>
+**ReadWriteOncePod**<br>
+the volume can be mounted as read-write by a single Pod. Use **ReadWriteOncePod** access mode if you want to ensure that only one pod across the whole cluster can read that PVC or write to it.<br>
+
 ---
 
 # 4. What is a **StorageClass**?
