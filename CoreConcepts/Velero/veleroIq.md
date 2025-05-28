@@ -11,7 +11,7 @@
 - Install the Velero CLI and server on both clusters
 - Use the same cloud provider plugin and object storage backend (e.g., Azure Blob)
 
-```bash
+```
 velero install \
   --provider azure \
   --plugins velero/velero-plugin-for-microsoft-azure \
@@ -24,7 +24,7 @@ velero install \
 
 ### 🔹 2. **Create a backup of the namespace in the source cluster**
 
-```bash
+```
 velero backup create my-ns-backup --include-namespaces my-namespace
 ```
 
@@ -34,7 +34,7 @@ velero backup create my-ns-backup --include-namespaces my-namespace
 
 ### 🔹 3. **Switch kubeconfig context to the target cluster**
 
-```bash
+```
 kubectl config use-context <target-cluster-context>
 ```
 
@@ -48,7 +48,7 @@ kubectl config use-context <target-cluster-context>
 
 ### 🔹 5. **Restore the backup in the target cluster**
 
-```bash
+```
 velero restore create --from-backup my-ns-backup
 ```
 
