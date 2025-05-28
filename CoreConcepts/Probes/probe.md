@@ -8,7 +8,7 @@ The probe checks whether the container is:
 - Ready (Readiness Probe) – Determines if the container is ready to accept traffic.
 - Starting Up (Startup Probe) – Determines if the container has successfully started (useful for slow-starting applications).
 
-## What is Libeness probe ?
+## What is Liveness probe ?
 
 A liveness probe in Kubernetes is a mechanism used to determine if a container is still running and functioning properly. If the liveness probe fails, Kubernetes will restart the container to ensure that the application stays healthy and available.
 

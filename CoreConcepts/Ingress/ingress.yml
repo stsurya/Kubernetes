@@ -6,10 +6,9 @@ metadata:
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
-  ingressClassName: nginx
+  ingressClassName: nginx-new
   rules:
-  - host: suryaihwfe.com
-    http:
+  - http:
       paths:
       - path: /
         pathType: Prefix
