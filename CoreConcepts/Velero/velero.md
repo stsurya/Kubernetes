@@ -71,7 +71,7 @@ Used to interact with the Velero server to create backups, restores, view status
 
 ### Step 1: Create Azure Resources
 
-```bash
+```
 # Create a resource group
 az group create --name velero-rg --location eastus
 
@@ -105,7 +105,7 @@ accountKey = <paste-your-key-here>
 
 ### Step 3: Install Velero
 
-```bash
+```
 velero install \
     --provider azure \
     --plugins velero/velero-plugin-for-microsoft-azure:v1.8.0 \
@@ -122,19 +122,19 @@ velero install \
 
 ### Backup the whole cluster
 
-```bash
+```
 velero backup create cluster-backup-01
 ```
 
 ### Backup a specific namespace
 
-```bash
+```
 velero backup create ns-backup --include-namespaces dev
 ```
 
 ### View backups
 
-```bash
+```
 velero backup get
 ```
 
@@ -144,13 +144,13 @@ velero backup get
 
 ### Restore from a backup
 
-```bash
+```
 velero restore create --from-backup ns-backup
 ```
 
 ### View restores
 
-```bash
+```
 velero restore get
 ```
 
@@ -158,7 +158,7 @@ velero restore get
 
 ## ⏰ **Schedule Backups**
 
-```bash
+```
 velero schedule create daily-backup \
   --schedule "0 1 * * *" \
   --include-namespaces dev
@@ -174,7 +174,7 @@ Velero uses **Restic** to backup Persistent Volumes (PVCs) if CSI or snapshot pl
 
 To annotate PVCs for backup:
 
-```bash
+```
 kubectl annotate pod <pod-name> backup.velero.io/backup-volumes=<volume-name>
 ```
 
@@ -182,7 +182,7 @@ kubectl annotate pod <pod-name> backup.velero.io/backup-volumes=<volume-name>
 
 ## 📂 **Check Backup Content**
 
-```bash
+```
 velero backup describe cluster-backup-01 --details
 ```
 
@@ -190,7 +190,7 @@ velero backup describe cluster-backup-01 --details
 
 ## 🧹 **Delete Backups**
 
-```bash
+```
 velero backup delete cluster-backup-01
 ```
 
