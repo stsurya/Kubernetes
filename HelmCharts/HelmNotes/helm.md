@@ -57,13 +57,15 @@ Helm is a package manager for kubernetes and Helm Charts are its packages. They 
 
 ### 📦 Repository Commands
 
-| Command                      | Description                                                     |
-| ---------------------------- | --------------------------------------------------------------- |
-| `helm repo add <name> <url>` | Adds a chart repository (like Bitnami, ingress-nginx, etc.)     |
-| `helm repo list`             | Lists added Helm repositories                                   |
-| `helm repo update`           | Updates your local repo cache (pulls latest charts from remote) |
-| `helm search hub <keyword>`  | Searches for a chart in [Artifact Hub](https://artifacthub.io)  |
-| `helm search repo <name>`    | Searches for a chart in added repos locally                     |
+| Command                                      | Description                                                     |
+| -------------------------------------------- | --------------------------------------------------------------- |
+| `helm repo add <name> <url>`                 | Adds a chart repository (like Bitnami, ingress-nginx, etc.)     |
+| `helm repo list`                             | Lists added Helm repositories                                   |
+| `helm repo update`                           | Updates your local repo cache (pulls latest charts from remote) |
+| `helm search hub <keyword>`                  | Searches for a chart in [Artifact Hub](https://artifacthub.io)  |
+| `helm search repo <name>`                    | Searches for a chart in added repos locally                     |
+| `helm repo remove <repo-name>`               | To remove a Helm repository                                     |
+| `helm pull <repo-name>/<chart-name> --untar` | To pull the repo form public aritifact                          |
 
 ---
 
