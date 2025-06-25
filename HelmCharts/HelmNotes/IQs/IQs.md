@@ -63,3 +63,7 @@ When you run helm uninstall, all resources created by that release — such as D
 
 ### 10) What if the Helm upgrade fails midway? What will happen to the existing release?
 If a Helm upgrade fails midway, the release is automatically marked as failed, and the previous release remains active and unchanged. Helm does not apply partial changes, ensuring the cluster stays in a consistent state. You can inspect the failure or manually roll back to a known good revision using helm rollback.
+
+### 11) How would you migrate from kubectl apply to Helm for an exisitng application ?
+
+To migrate from kubectl apply to Helm, you start by collecting all your existing YAML manifests, then create a Helm chart structure and move the manifests into the templates/ directory. You parameterize the values using Helm templating and test the chart locally. Once verified, you install it using helm install. This approach introduces better maintainability, reusability, and lifecycle management to your Kubernetes deployments.
