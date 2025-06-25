@@ -16,3 +16,31 @@ A) > A Helm chart is a package that defines a Kubernetes application. It consist
 6. **`README.md` and `LICENSE`** *(optional)* – Provide documentation and licensing information.
 
 > These components together make Helm charts reusable, configurable, and ideal for managing complex Kubernetes deployments efficiently.
+
+### 3) What is values.yaml in Helm? How do you override it during deployment?
+
+values.yaml in Helm stores default configuration values used in template rendering. It allows you to make your chart reusable and configurable. You can override it at deployment time using either a custom values file (-f) or inline key-value pairs using --set, giving you environment-specific control over how the application is deployed.
+
+### 4) What is the difference between a Helm release and a chart?
+
+> A **Helm chart** is a **package** that contains all the Kubernetes resource templates and configuration files needed to deploy an application. It defines *what* to deploy.
+
+> A **Helm release** is a **running instance** of a chart that has been deployed to a Kubernetes cluster using specific configuration values. It represents *what has been deployed*.
+
+**In simple terms:**
+
+> The **chart** is like a blueprint or template, while the **release** is the actual deployed application created from that chart.
+
+You can create **multiple releases** from the same chart, each with different names or configurations (e.g., dev, staging, prod).
+
+### 5) Where are Helm releases stored?
+
+> Helm releases are stored **inside the Kubernetes cluster** as **Secrets** (or optionally as ConfigMaps) in the same namespace where the release was installed.
+
+By default:
+
+* Helm stores release information in the **`Secret` objects** with the label:
+  `owner=helm` and `status=deployed`.
+* These secrets contain metadata such as the chart, values used, version, and revision history.
+
+> This allows Helm to manage, upgrade, rollback, or uninstall releases by referring to the stored state in the cluster.
