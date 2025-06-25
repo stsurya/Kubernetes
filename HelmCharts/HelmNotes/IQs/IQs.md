@@ -48,3 +48,11 @@ By default:
 ### 6) What's the use of version parameter in charts.yml ?
 
 The version field in Chart.yaml defines the chart’s version and is critical for version control, upgrades, and repository management. It helps teams track changes to the chart’s structure and ensures the correct version is used during deployments.
+
+### 7) What's release versioning in helm releases ?
+
+Every time you install or upgrade a release, Helm increments the release revision number Stored in the cluster (as Secrets or ConfigMaps). Used for rollback, history tracking, and upgrade auditing.
+
+### 8) What are helm hooks ?
+
+Helm hooks are Kubernetes resources that run at specific stages of a release lifecycle, such as before or after installs, upgrades, or deletes. They’re defined using annotations and are useful for tasks like migrations, validations, or cleanups that need to run at precise moments during a deployment.
