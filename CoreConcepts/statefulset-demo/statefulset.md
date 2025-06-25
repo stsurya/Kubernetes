@@ -75,8 +75,6 @@ spec:
       storageClassName: default  # Replace with your storage class if needed
 ```
 
-Absolutely, Surya! Here are **concise interview-style notes** for:
-
 * **StorageClass**
 * **PersistentVolumeClaim (PVC)**
 * **PersistentVolume (PV)**
