@@ -56,3 +56,7 @@ Every time you install or upgrade a release, Helm increments the release revisio
 ### 8) What are helm hooks ?
 
 Helm hooks are Kubernetes resources that run at specific stages of a release lifecycle, such as before or after installs, upgrades, or deletes. They’re defined using annotations and are useful for tasks like migrations, validations, or cleanups that need to run at precise moments during a deployment.
+
+### 9) What happens when you do a helm uninstall?
+
+When you run helm uninstall, all resources created by that release — such as Deployments, Services, PVCs, ConfigMaps, and Secrets — are removed. However, Persistent Volumes (PVs) are not deleted unless their reclaim policy is set to Delete. Helm only manages what it creates, so any manually created or shared resources are not affected.
