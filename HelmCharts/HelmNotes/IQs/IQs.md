@@ -60,3 +60,6 @@ Helm hooks are Kubernetes resources that run at specific stages of a release lif
 ### 9) What happens when you do a helm uninstall?
 
 When you run helm uninstall, all resources created by that release — such as Deployments, Services, PVCs, ConfigMaps, and Secrets — are removed. However, Persistent Volumes (PVs) are not deleted unless their reclaim policy is set to Delete. Helm only manages what it creates, so any manually created or shared resources are not affected.
+
+### 10) What if the Helm upgrade fails midway? What will happen to the existing release?
+If a Helm upgrade fails midway, the release is automatically marked as failed, and the previous release remains active and unchanged. Helm does not apply partial changes, ensuring the cluster stays in a consistent state. You can inspect the failure or manually roll back to a known good revision using helm rollback.
