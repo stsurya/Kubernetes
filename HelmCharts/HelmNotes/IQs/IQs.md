@@ -44,3 +44,7 @@ By default:
 * These secrets contain metadata such as the chart, values used, version, and revision history.
 
 > This allows Helm to manage, upgrade, rollback, or uninstall releases by referring to the stored state in the cluster.
+
+### 6) What's the use of version parameter in charts.yml ?
+
+The version field in Chart.yaml defines the chart’s version and is critical for version control, upgrades, and repository management. It helps teams track changes to the chart’s structure and ensures the correct version is used during deployments.
