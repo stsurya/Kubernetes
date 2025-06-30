@@ -1,17 +1,6 @@
-$var = Get-AzAutomationVariable -AutomationAccountName $automationAccountName `
-    -ResourceGroupName $resourceGroup `
-    -Name $environmentVariable  -ErrorAction SilentlyContinue
- 
-if ($null -eq $var) {
-    New-AzAutomationVariable -AutomationAccountName $automationAccountName `
-        -ResourceGroupName $resourceGroup `
-        -Name $environmentVariable  `
-        -Value $env  `
-        -Encrypted $false
-}
-else {
-    Set-AzAutomationVariable -AutomationAccountName $automationAccountName `
-        -ResourceGroupName $resourceGroup `
-        -Name $environmentVariable `
-        -Value $env
+$FunctionApps = @("PaaS-Runtime-Ingester", "PaaS-Runtime-FeedReceiver", "PaaS-Runtime-charmFeedCollector", "PaaS-Runtime-DaasFeedFileGenerator", "PaaS-Runtime-InrixCollector", "PaaS-Runtime-InrixinterfaceStub", "PaaS-Runtime-DaaSZipFileGenerator", "PaaS-Runtime-InrixProfiling", "paas-runtime-Dataimporter", "PaaS-Runtime-Notification", "PaaS-Runtime-PublicFeedDispatcher", "PaaS-Runtime-ReportingTrafficData", "PaaS-Runtime-ESRINetworkCollector", "PaaS-Runtime-ReportingFusedTrafficData", "PaaS-Runtime-EventCollector", "PaaS-Runtime-Splitter", "PaaS-Runtime-FeedCollector", "PaaS-Runtime-Subscriber-web", "PaaS-Runtime-SubscriptionFilter", "PaaS-Runtime-TrafficAssetData", "PaaS-Runtime-XMLFragmentGenerator", "PaaS-Runtime-FusedDaaSfileGenerator", "PaaS-Runtime-WazeCollector", "PaaS-Runtime-CaveManCalculation", "PaaS-Runtime-TMUStatusCollector", "PaaS-Runtime-Reporting", "PaaS-Runtime-FusedTrafficLinkAggregation", "PaaS-Runtime-ReportingIngestor", "PaaS-Runtime-NonXMLFragmentGenerator")
+
+
+foreach ($FunctionApp in $FunctionApps) {
+    az pipelines run --branch release/release-paasruntime-v1.0.44 --name $FunctionApp --org https://dev.azure.com/HighwaysEngland-NTIS/ --project Transformation
 }
