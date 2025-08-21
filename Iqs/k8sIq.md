@@ -387,7 +387,7 @@ podvolumerestores.velero.io
 ## 📄 View a Specific CRD Definition
 
 ```
-kubectl get crd backups.velero.io -o yaml
+kubectl get crd backups.velero.io -o 
 ```
 
 This shows how the custom resource is structured (like schema, versions, etc.).
@@ -402,3 +402,81 @@ This shows how the custom resource is structured (like schema, versions, etc.).
 | CR            | Custom Resource – instance of a CRD (e.g., a `Backup` you create)               |
 | Use in Velero | Velero defines CRDs like `Backup`, `Restore`, etc., and works by watching those |
 | Relevance     | Critical for understanding how Velero interacts with Kubernetes                 |
+
+
+## What's the difference between Taints and Tolerations and NodeAffinity ?
+
+## 1. **Taints and Tolerations**
+
+* **Taint (on Node):**
+
+  * A *node property* that **repels pods** unless they have a matching toleration.
+  * Think of it like: *“Don’t schedule pods here unless they explicitly say they can tolerate me.”*
+  * Example:
+
+    ```
+    kubectl taint nodes node1 key=value:NoSchedule
+    ```
+
+    → This means no pod will be scheduled on `node1` unless it has a toleration for this taint.
+
+* **Toleration (on Pod):**
+
+  * A *pod property* that says: *“I can tolerate this taint, so I’m allowed to be scheduled here.”*
+  * Example in pod spec:
+
+    ```
+    tolerations:
+    - key: "key"
+      operator: "Equal"
+      value: "value"
+      effect: "NoSchedule"
+    ```
+
+✅ **Use case**:
+Keep certain nodes reserved for special workloads (e.g., GPU nodes, infra-only nodes).
+
+---
+
+## 2. **Node Affinity**
+
+* **Node affinity (on Pod):**
+
+  * A *pod scheduling rule* that **attracts pods** to specific nodes based on labels.
+  * Think of it like: *“I prefer or require my pod to run on nodes that match these labels.”*
+  * Example in pod spec:
+
+    ```
+    affinity:
+      nodeAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          nodeSelectorTerms:
+          - matchExpressions:
+            - key: disktype
+              operator: In
+              values:
+              - ssd
+    ```
+
+✅ **Use case**:
+Make sure workloads land on nodes with specific hardware, labels, or zones (e.g., `ssd` disk, `zone=us-east1-b`).
+
+---
+
+## 🔑 Key Differences
+
+| Feature              | Taints & Tolerations                            | Node Affinity                                           |
+| -------------------- | ----------------------------------------------- | ------------------------------------------------------- |
+| **Who defines it**   | Taint → Node, Toleration → Pod                  | Affinity → Pod                                          |
+| **Nature**           | Negative (keeps pods away unless tolerated)     | Positive (attracts pods to labeled nodes)               |
+| **Default Behavior** | Blocks pods from running unless tolerated       | Pods can still run on other nodes if rules allow        |
+| **Use Case**         | Reserve or restrict nodes for special workloads | Prefer or require pods to run on specific labeled nodes |
+
+---
+
+👉 In short:
+
+* **Taints & Tolerations** = “Keep out unless allowed” 🚫
+* **Node Affinity** = “Try to schedule me here” 🎯
+
+---
